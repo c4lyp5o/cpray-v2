@@ -1,7 +1,12 @@
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import styles from '../styles/Home.module.css';
 
-export default function Time({ zone }) {
+export default function Time() {
+  const router = useRouter();
+  const { zone } = router.query;
+  const [timeNow, setTimeNow] = useState(new Date());
   const fetcher = (url) => fetch(url).then((r) => r.json());
   const { data, error } = useSWR(
     `https://api.waktusolat.me/waktusolat/today/${zone}`,
@@ -10,14 +15,27 @@ export default function Time({ zone }) {
       suspense: true,
     }
   );
+  useEffect(() => {
+    const startTimer = () => {
+      const timer = setInterval(() => {
+        setTimeNow(new Date());
+      }, 1000);
+      return () => clearInterval(timer);
+    };
+    startTimer();
+  }, []);
   if (error) return <div>failed to load</div>;
   return (
     <main className={styles.main}>
       <div className={styles.grid}>
         <a href='https://nextjs.org/docs' className={styles.titlecard}>
-          <h1 className={styles.title}>{data.today.day}</h1>
-          <h2>{data.data[0].date}</h2>
-          <h2>{data.data[0].hijri}</h2>
+          <h1 className={styles.title}>{timeNow.toLocaleTimeString()}</h1>
+          <h2>{data.today.day}</h2>
+          <h2>
+            {data.data[0].hijri.split(' ')[2]},{' '}
+            {data.data[0].date.split(' ')[0]}
+          </h2>
+          <h2></h2>
           <h2>{data.zone}</h2>
           <h2>
             Waktu {data.nextSolat.name} akan masuk dalam {data.nextSolat.hours}{' '}

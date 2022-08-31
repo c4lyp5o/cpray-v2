@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
+import Spin from '../../components/Spin';
 import styles from '../../styles/Home.module.css';
 
 function Quran() {
@@ -31,7 +32,7 @@ function Quran() {
   }, []);
 
   if (surahError) return <div>failed to load</div>;
-  if (!surah || !randomAyat) return <div>loading...</div>;
+  if (!surah || !randomAyat) return <Spin />;
 
   function TheIntro() {
     if (intro === true) {
