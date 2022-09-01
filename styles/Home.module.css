@@ -1,3 +1,11 @@
+.centerAll {
+  justify-items: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+
 .container {
   padding: 0 2rem;
 }
@@ -125,6 +133,141 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.quranAyats {
+  text-align: center;
+}
+
+.quranic {
+  /* position: relative; */
+  /* top: -6px; */
+  font-weight: 50;
+  font-family: 'Uthmanic';
+  font-size: 35pt;
+  line-height: 3;
+  display: inline-block;
+  vertical-align: top;
+  word-spacing: normal;
+}
+
+.quranicIntro {
+  font-family: 'Uthmanic';
+  font-weight: 50;
+  font-size: 35pt;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginationItem {
+  /* background: #fff; */
+  /* border: 2px solid #666; */
+  padding: 10px 15px;
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  position: relative;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.paginationItem span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.prev,
+.next {
+  /* background: #fff; */
+  border: none;
+  padding: 10px;
+  /* color: blue; */
+  /* box-shadow: 0 0 3px rgba(0, 0, 0, 0.4); */
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.paginationItem.active {
+  border: 6px solid rgb(255, 255, 255);
+  /* color: #888; */
+  pointer-events: none;
+}
+
+.prev.disabled,
+.next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+}
+
+.damnbuttons {
+  cursor: pointer;
+}
+
+#form {
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.25rem;
+  position: fixed;
+  bottom: 5px;
+  left: 145px;
+  right: 145px;
+  display: flex;
+  height: 3rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+}
+
+#form button {
+  /* background: #333;  */
+  border: none;
+  /* padding: 0rem;  */
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  border-radius: 10px;
+  outline: none;
+  height: 3rem;
+  /* color: #fff; */
+}
+
+.messagesContainer {
+  /* position: relative; */
+  /* top: 75px; */
+  /* bottom: 50px; */
+  /* left: 10%; */
+  /* right: 10%; */
+  /* background: rgba(0, 0, 0, 0.941); */
+  /* padding: 0.25rem; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  /* box-sizing: border-box; */
+  /* backdrop-filter: blur(10px); */
+}
+
+.messagesList {
+  background-color: rgba(1, 0, 68, 0.892);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  width: 100%;
+  height: 550px;
+  overflow: auto;
+  position: relative;
+  padding: 20px;
+  border-radius: 50px;
+}
+
+.messageItem {
+  list-style-type: none;
+  padding: 0;
 }
 
 @media (max-width: 600px) {

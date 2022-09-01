@@ -1,10 +1,11 @@
+import styles from '../../styles/Home.module.css';
 export default function Radio() {
   return (
     <>
       <main className='container'>
         <div className='radio-centered'>
           <ul>
-            <li className='radiolist'>
+            <li className={styles.radiolist}>
               <span className='radiotext'>
                 <a
                   href='https://radioonline.co.id/#rodja'

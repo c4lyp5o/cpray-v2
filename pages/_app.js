@@ -1,14 +1,12 @@
 import '../styles/pico.min.css';
-import '../styles/customs.css';
+import '../styles/globals.css';
 import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <body>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </body>
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   );
 }
 

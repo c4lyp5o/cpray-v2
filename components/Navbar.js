@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import styles from '../styles/Home.module.css';
 
 export default function Navbar() {
   return (
     <header className='container'>
-      <nav className='navbar'>
+      <nav className={styles.navbar}>
         <ul>
           <li>
             <Link href='/'>
@@ -23,7 +24,7 @@ export default function Navbar() {
               </a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href='/hadith'>
               <a className='navbar-brand'>
                 <span className='ml-2'>
@@ -31,7 +32,7 @@ export default function Navbar() {
                 </span>
               </a>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link href='/radio'>
               <a className='navbar-brand'>

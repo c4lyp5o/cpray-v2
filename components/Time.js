@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import styles from '../styles/Home.module.css';
 
 export default function Time() {
   const router = useRouter();
@@ -42,30 +43,32 @@ export default function Time() {
         </hgroup>
       </section>
       <section className='time2'>
-        <div className='grid kbdThingy'>
-          <div>
-            <kbd>Subuh</kbd>
-            <p>{data.data[0].fajr.slice(0, 5)}</p>
-          </div>
-          <div>
-            <kbd>Syuruk</kbd>
-            <p>{data.data[0].syuruk.slice(0, 5)}</p>
-          </div>
-          <div>
-            <kbd>Zuhur</kbd>
-            <p>{data.data[0].dhuhr.slice(0, 5)}</p>
-          </div>
-          <div>
-            <kbd>Asar</kbd>
-            <p>{data.data[0].asr.slice(0, 5)}</p>
-          </div>
-          <div>
-            <kbd>Maghrib</kbd>
-            <p>{data.data[0].maghrib.slice(0, 5)}</p>
-          </div>
-          <div>
-            <kbd>Isha</kbd>
-            <p>{data.data[0].isha.slice(0, 5)}</p>
+        <div className={styles.centerAll}>
+          <div className='grid kbdThingy'>
+            <div>
+              <kbd>Subuh</kbd>
+              <p>{data.data[0].fajr.slice(0, 5)}</p>
+            </div>
+            <div>
+              <kbd>Syuruk</kbd>
+              <p>{data.data[0].syuruk.slice(0, 5)}</p>
+            </div>
+            <div>
+              <kbd>Zuhur</kbd>
+              <p>{data.data[0].dhuhr.slice(0, 5)}</p>
+            </div>
+            <div>
+              <kbd>Asar</kbd>
+              <p>{data.data[0].asr.slice(0, 5)}</p>
+            </div>
+            <div>
+              <kbd>Maghrib</kbd>
+              <p>{data.data[0].maghrib.slice(0, 5)}</p>
+            </div>
+            <div>
+              <kbd>Isha</kbd>
+              <p>{data.data[0].isha.slice(0, 5)}</p>
+            </div>
           </div>
         </div>
       </section>

@@ -62,7 +62,7 @@ function Quran() {
           </form>
         </div>
         <div>
-          <h1 className={styles.intro}>{randomAyat.data.arabic}</h1>
+          <h1 className={styles.quranicIntro}>{randomAyat.data.arabic}</h1>
           <p className={styles.intro}>{randomAyat.data.malayTranslation}</p>
         </div>
       </div>

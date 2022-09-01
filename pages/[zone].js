@@ -4,8 +4,10 @@ import Spin from '../components/Spin';
 
 export default function Zone() {
   return (
-    <Suspense fallback={<Spin />}>
-      <Time />
-    </Suspense>
+    <main className='container'>
+      <Suspense fallback={<Spin />}>
+        <Time />
+      </Suspense>
+    </main>
   );
 }

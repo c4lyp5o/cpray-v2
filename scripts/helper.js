@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styles from '../styles/Home.module.css';
 
 export class ErrorBoundary extends React.Component {
   state = { error: null };
@@ -120,11 +121,11 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
       return (
         <div className='grid'>
           <div />
-          <div className='pagination'>
+          <div className={styles.pagination}>
             {/* previous button */}
             <button
               onClick={goToPreviousPage}
-              className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
+              className={`styles.prev ${currentPage === 1 ? 'disabled' : ''}`}
             >
               Sebelumnya
             </button>
@@ -134,7 +135,7 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
               <button
                 key={index}
                 onClick={changePage}
-                className={`paginationItem ${
+                className={`${styles.paginationItem} ${
                   currentPage === item ? 'active' : null
                 }`}
               >
@@ -145,7 +146,9 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
             {/* next button */}
             <button
               onClick={goToNextPage}
-              className={`next ${currentPage === pages ? 'disabled' : ''}`}
+              className={`styles.next ${
+                currentPage === pages ? 'disabled' : ''
+              }`}
             >
               Seterusnya
             </button>
@@ -156,15 +159,12 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
   }
 
   return (
-    <div>
-      {/* show the ayats, 10 posts at a time */}
+    <div className={styles.centerAll}>
       <div className='dataContainer'>
         {getPaginatedData().map((d, idx) => (
           <RenderComponent key={idx} data={d} />
         ))}
       </div>
-      <br />
-      <br />
       {showPaginateNav()}
     </div>
   );
