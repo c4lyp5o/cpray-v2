@@ -121,11 +121,11 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
       return (
         <div className='grid'>
           <div />
-          <div className={styles.pagination}>
+          <div className='pagination'>
             {/* previous button */}
             <button
               onClick={goToPreviousPage}
-              className={`styles.prev ${currentPage === 1 ? 'disabled' : ''}`}
+              className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
             >
               Sebelumnya
             </button>
@@ -135,7 +135,7 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
               <button
                 key={index}
                 onClick={changePage}
-                className={`${styles.paginationItem} ${
+                className={`paginationItem ${
                   currentPage === item ? 'active' : null
                 }`}
               >
@@ -146,9 +146,7 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
             {/* next button */}
             <button
               onClick={goToNextPage}
-              className={`styles.next ${
-                currentPage === pages ? 'disabled' : ''
-              }`}
+              className={`next ${currentPage === pages ? 'disabled' : ''}`}
             >
               Seterusnya
             </button>

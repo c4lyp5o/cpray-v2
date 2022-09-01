@@ -1,27 +1,40 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
 
 export default function Navbar() {
+  function ActiveLink({ href, title }) {
+    const router = useRouter();
+    const style = {
+      color: router.asPath == href ? '#fdd835' : '#039be5',
+    };
+
+    const handleClick = (e) => {
+      e.preventDefault();
+      router.push(href);
+    };
+
+    return (
+      <a href={href} onClick={handleClick} style={style}>
+        <span>
+          <strong>{title}</strong>
+        </span>
+      </a>
+    );
+  }
+
   return (
     <header className='container'>
       <nav className={styles.navbar}>
         <ul>
           <li>
             <Link href='/'>
-              <a className='navbar-brand'>
-                <span className='ml-2'>
-                  <strong>Waktu Solat</strong>
-                </span>
-              </a>
+              <ActiveLink href='/' title='Waktu Solat' />
             </Link>
           </li>
           <li>
             <Link href='/quran'>
-              <a className='navbar-brand'>
-                <span className='ml-2'>
-                  <strong>Quran</strong>
-                </span>
-              </a>
+              <ActiveLink href='/quran' title='Al Quran' />
             </Link>
           </li>
           {/* <li>
@@ -35,29 +48,17 @@ export default function Navbar() {
           </li> */}
           <li>
             <Link href='/radio'>
-              <a className='navbar-brand'>
-                <span className='ml-2'>
-                  <strong>Radio</strong>
-                </span>
-              </a>
+              <ActiveLink href='/radio' title='Radio' />
             </Link>
           </li>
           <li>
             <Link href='/chat'>
-              <a className='navbar-brand'>
-                <span className='ml-2'>
-                  <strong>Chat</strong>
-                </span>
-              </a>
+              <ActiveLink href='/chat' title='Chat' />
             </Link>
           </li>
           <li>
             <Link href='/about'>
-              <a className='navbar-brand'>
-                <span className='ml-2'>
-                  <strong>About Us</strong>
-                </span>
-              </a>
+              <ActiveLink href='/about' title='About Us' />
             </Link>
           </li>
         </ul>

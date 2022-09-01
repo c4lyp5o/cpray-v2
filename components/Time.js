@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import Spin from './Spin';
 import styles from '../styles/Home.module.css';
+
+const fetcher = (url) => fetch(url).then((r) => r.json());
 
 export default function Time() {
   const router = useRouter();
   const { zone } = router.query;
   const [timeNow, setTimeNow] = useState(new Date());
-  const fetcher = (url) => fetch(url).then((r) => r.json());
   const { data, error } = useSWR(
     `https://api.waktusolat.me/waktusolat/today/${zone}`,
     fetcher,
@@ -25,6 +27,7 @@ export default function Time() {
     startTimer();
   }, []);
   if (error) return <div>failed to load</div>;
+  if (!data) return <Spin />;
   return (
     <>
       <section className='time'>
@@ -45,27 +48,33 @@ export default function Time() {
       <section className='time2'>
         <div className={styles.centerAll}>
           <div className='grid kbdThingy'>
-            <div>
+            <div id={`${data.nextSolat.name === 'fajr' ? 'breath-light' : ''}`}>
               <kbd>Subuh</kbd>
               <p>{data.data[0].fajr.slice(0, 5)}</p>
             </div>
-            <div>
+            <div
+              id={`${data.nextSolat.name === 'syuruk' ? 'breath-light' : ''}`}
+            >
               <kbd>Syuruk</kbd>
               <p>{data.data[0].syuruk.slice(0, 5)}</p>
             </div>
-            <div>
+            <div
+              id={`${data.nextSolat.name === 'dhuhr' ? 'breath-light' : ''}`}
+            >
               <kbd>Zuhur</kbd>
               <p>{data.data[0].dhuhr.slice(0, 5)}</p>
             </div>
-            <div>
+            <div id={`${data.nextSolat.name === 'asr' ? 'breath-light' : ''}`}>
               <kbd>Asar</kbd>
               <p>{data.data[0].asr.slice(0, 5)}</p>
             </div>
-            <div>
+            <div
+              id={`${data.nextSolat.name === 'maghrib' ? 'breath-light' : ''}`}
+            >
               <kbd>Maghrib</kbd>
               <p>{data.data[0].maghrib.slice(0, 5)}</p>
             </div>
-            <div>
+            <div id={`${data.nextSolat.name === 'isha' ? 'breath-light' : ''}`}>
               <kbd>Isha</kbd>
               <p>{data.data[0].isha.slice(0, 5)}</p>
             </div>

@@ -62,8 +62,13 @@ function Quran() {
           </form>
         </div>
         <div>
-          <h1 className={styles.quranicIntro}>{randomAyat.data.arabic}</h1>
-          <p className={styles.intro}>{randomAyat.data.malayTranslation}</p>
+          <hgroup>
+            <h1 className={styles.quranicIntro}>{randomAyat.data.arabic}</h1>
+            <p className={styles.intro}>{randomAyat.data.malayTranslation}</p>
+            <small>{randomAyat.data.fromSurah}</small>
+            {', '}
+            <small>{randomAyat.data.ayatNumber}</small>
+          </hgroup>
         </div>
       </div>
       <br />
