@@ -30,7 +30,7 @@ export default function Time() {
   if (!data) return <Spin />;
   return (
     <>
-      <section className='time'>
+      <section>
         <hgroup>
           <h1>{timeNow.toLocaleTimeString()}</h1>
           <h6>{data.today.day}</h6>
@@ -45,12 +45,12 @@ export default function Time() {
           </h6>
         </hgroup>
       </section>
-      <section className='time2'>
+      <section>
         <div className={styles.centerAll}>
           <div className='grid kbdThingy'>
             <div id={`${data.nextSolat.name === 'fajr' ? 'breath-light' : ''}`}>
               <kbd>Subuh</kbd>
-              <p>{data.data[0].fajr.slice(0, 5)}</p>
+              <h4>{data.data[0].fajr.slice(0, 5)}</h4>
             </div>
             <div
               id={`${data.nextSolat.name === 'syuruk' ? 'breath-light' : ''}`}

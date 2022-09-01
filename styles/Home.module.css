@@ -221,6 +221,23 @@
   padding: 0;
 }
 
+.radiolist {
+  list-style: none;
+  margin-right: 10px;
+  margin-bottom: 50px;
+  /* padding: 0; */
+}
+
+.radiolist img {
+  /* display: inline-block; */
+  border-radius: 20px;
+}
+
+.radiolist audio {
+  /* display: none; */
+  padding-left: 12px;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

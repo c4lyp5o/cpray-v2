@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from '../../styles/Home.module.css';
 export default function Radio() {
   return (
@@ -11,26 +12,26 @@ export default function Radio() {
                   href='https://radioonline.co.id/#rodja'
                   title='Radio Rodja (Bogor)'
                 >
-                  <img
+                  <Image
                     className='cover'
                     src='https://cdn.webrad.io/images/logos/radioonline-co-id/rodja.png'
                     alt='Radio Rodja (Bogor)'
                     height='66'
                     width='96'
-                  ></img>
+                  ></Image>
                 </a>
               </span>
               <audio controls>
                 <source src='https://radioislamindonesia.com/rodja.mp3?_=2' />
               </audio>
             </li>
-            <li className='radiolist'>
+            <li className={styles.radiolist}>
               <span className='radiotext'>
                 <a
                   href='https://radioonline.co.id/#muslim'
                   title='Radio Muslim'
                 >
-                  <img
+                  <Image
                     className='cover'
                     src='https://cdn.webrad.io/images/logos/radioonline-co-id/muslim.png'
                     alt='Radio Muslim'
@@ -43,13 +44,13 @@ export default function Radio() {
                 <source src='https://cp.phpmystream.com/radioSSLnew/s/75' />
               </audio>
             </li>
-            <li className='radiolist'>
+            <li className={styles.radiolist}>
               <span>
                 <a
                   href='https://radioonline.co.id/#bass-salatiga'
                   title='Radio Bass (Salatiga)'
                 >
-                  <img
+                  <Image
                     className='cover'
                     src='https://cdn.webrad.io/images/logos/radioonline-co-id/bass-salatiga.png'
                     alt='Radio Bass (Salatiga)'
