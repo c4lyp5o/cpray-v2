@@ -1,5 +1,4 @@
-import { Image } from 'next/image';
-function Radio() {
+export default function Radio() {
   return (
     <>
       <main className='container'>
@@ -11,13 +10,13 @@ function Radio() {
                   href='https://radioonline.co.id/#rodja'
                   title='Radio Rodja (Bogor)'
                 >
-                  <Image
-                    class='cover'
+                  <img
+                    className='cover'
                     src='https://cdn.webrad.io/images/logos/radioonline-co-id/rodja.png'
                     alt='Radio Rodja (Bogor)'
                     height='66'
                     width='96'
-                  />
+                  ></img>
                 </a>
               </span>
               <audio controls>
@@ -30,8 +29,8 @@ function Radio() {
                   href='https://radioonline.co.id/#muslim'
                   title='Radio Muslim'
                 >
-                  <Image
-                    class='cover'
+                  <img
+                    className='cover'
                     src='https://cdn.webrad.io/images/logos/radioonline-co-id/muslim.png'
                     alt='Radio Muslim'
                     height='66'
@@ -49,8 +48,8 @@ function Radio() {
                   href='https://radioonline.co.id/#bass-salatiga'
                   title='Radio Bass (Salatiga)'
                 >
-                  <Image
-                    class='cover'
+                  <img
+                    className='cover'
                     src='https://cdn.webrad.io/images/logos/radioonline-co-id/bass-salatiga.png'
                     alt='Radio Bass (Salatiga)'
                     height='66'
@@ -68,5 +67,3 @@ function Radio() {
     </>
   );
 }
-
-export default Radio;

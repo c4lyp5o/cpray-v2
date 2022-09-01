@@ -1,9 +1,11 @@
 export default function About() {
   return (
-    <div className='container'>
-      <main className='main'>
-        <h1 className='title'>Waktu Solat Malaysia</h1>
-      </main>
-    </div>
+    <main className='container'>
+      <div className='centered'>
+        <h1>Contact</h1>
+        <p>Reach us:</p>
+        <a href='https://github.com/c4lyp5o'>@c4lyp5o</a>
+      </div>
+    </main>
   );
 }

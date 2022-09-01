@@ -1,0 +1,209 @@
+@font-face {
+  font-family: 'Uthmanic';
+  src: local('Uthmanic Script'),
+    url(../styles/fonts/KFGQPC-Uthmanic-Script-HAFS-Regular.otf)
+      format('opentype');
+  font-style: normal;
+  font-display: swap;
+}
+
+.navbar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radiolist {
+  list-style: none;
+  margin-right: 10px;
+  margin-bottom: 50px;
+  /* padding: 0; */
+}
+
+.radiolist img {
+  /* display: inline-block; */
+  border-radius: 20px;
+}
+
+.radiolist audio {
+  /* display: none; */
+  padding-left: 12px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.centerAll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centeredNoSpace {
+  text-align: center;
+  /* margin-bottom: 0; */
+  line-height: 0.75;
+  /* display: inline-block; */
+  word-spacing: 0.1em;
+}
+
+.kbdThingy {
+  /* padding: 20px; */
+  /* margin-top: 20px; */
+  /* border: 1px solid #ccc; */
+  /* border-radius: 20px; */
+  text-align: center;
+  word-spacing: 0.3em;
+  max-width: 1000px;
+}
+
+.nospace {
+  line-height: 1;
+}
+
+.yesspace {
+  line-height: 1;
+}
+
+.quranAyats {
+  text-align: center;
+}
+
+.quranic {
+  /* position: relative; */
+  /* top: -6px; */
+  font-weight: 50;
+  font-family: 'Uthmanic';
+  font-size: 35pt;
+  line-height: 3;
+  display: inline-block;
+  vertical-align: top;
+  word-spacing: normal;
+}
+
+.hadis {
+  /* position: relative; */
+  /* top: -6px; */
+  font-weight: 50;
+  font-family: 'Uthmanic';
+  font-size: 25pt;
+  line-height: 1.75;
+  display: inline-block;
+  vertical-align: top;
+  word-spacing: normal;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginationItem {
+  /* background: #fff; */
+  /* border: 2px solid #666; */
+  padding: 10px 15px;
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  position: relative;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.paginationItem span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.prev,
+.next {
+  /* background: #fff; */
+  border: none;
+  padding: 10px;
+  /* color: blue; */
+  /* box-shadow: 0 0 3px rgba(0, 0, 0, 0.4); */
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.paginationItem.active {
+  border: 6px solid rgb(255, 255, 255);
+  /* color: #888; */
+  pointer-events: none;
+}
+
+.prev.disabled,
+.next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+}
+
+.damnbuttons {
+  cursor: pointer;
+}
+
+#form {
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.25rem;
+  position: fixed;
+  bottom: 5px;
+  left: 145px;
+  right: 145px;
+  display: flex;
+  height: 3rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+}
+
+#form button {
+  /* background: #333;  */
+  border: none;
+  /* padding: 0rem;  */
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  border-radius: 10px;
+  outline: none;
+  height: 3rem;
+  /* color: #fff; */
+}
+
+.messages-container {
+  /* position: relative; */
+  /* top: 75px; */
+  /* bottom: 50px; */
+  /* left: 10%; */
+  /* right: 10%; */
+  /* background: rgba(0, 0, 0, 0.941); */
+  /* padding: 0.25rem; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  /* box-sizing: border-box; */
+  /* backdrop-filter: blur(10px); */
+}
+
+.messages-list {
+  background-color: rgba(1, 0, 68, 0.892);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  width: 100%;
+  height: 550px;
+  overflow: auto;
+  position: relative;
+  padding: 20px;
+  border-radius: 50px;
+}
+
+.message-item {
+  list-style-type: none;
+  padding: 0;
+}

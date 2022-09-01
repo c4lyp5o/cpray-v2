@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import styles from '../styles/Home.module.css';
 
 export default function Time() {
   const router = useRouter();
@@ -26,58 +25,50 @@ export default function Time() {
   }, []);
   if (error) return <div>failed to load</div>;
   return (
-    <main className={styles.main}>
-      <div className={styles.grid}>
-        <a href='https://nextjs.org/docs' className={styles.titlecard}>
-          <h1 className={styles.title}>{timeNow.toLocaleTimeString()}</h1>
-          <h2>{data.today.day}</h2>
-          <h2>
+    <>
+      <section className='time'>
+        <hgroup>
+          <h1>{timeNow.toLocaleTimeString()}</h1>
+          <h6>{data.today.day}</h6>
+          <h6>
             {data.data[0].hijri.split(' ')[2]},{' '}
             {data.data[0].date.split(' ')[0]}
-          </h2>
-          <h2></h2>
-          <h2>{data.zone}</h2>
-          <h2>
+          </h6>
+          <h6>{data.zone}</h6>
+          <h6>
             Waktu {data.nextSolat.name} akan masuk dalam {data.nextSolat.hours}{' '}
             jam {data.nextSolat.minutes} minit
-          </h2>
-        </a>
-        <a href='https://nextjs.org/docs' className={styles.card}>
-          <h2>Subuh</h2>
-          <p>{data.data[0].fajr}</p>
-        </a>
-
-        <a href='https://nextjs.org/learn' className={styles.card}>
-          <h2>Syuruk</h2>
-          <p>{data.data[0].syuruk}</p>
-        </a>
-
-        <a
-          href='https://github.com/vercel/next.js/tree/canary/examples'
-          className={styles.card}
-        >
-          <h2>Zuhur</h2>
-          <p>{data.data[0].dhuhr}</p>
-        </a>
-
-        <a
-          href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-          className={styles.card}
-        >
-          <h2>Asar</h2>
-          <p>{data.data[0].asr}</p>
-        </a>
-
-        <a href='https://nextjs.org/docs' className={styles.card}>
-          <h2>Maghrib</h2>
-          <p>{data.data[0].maghrib}</p>
-        </a>
-
-        <a href='https://nextjs.org/docs' className={styles.card}>
-          <h2>Isha</h2>
-          <p>{data.data[0].asr}</p>
-        </a>
-      </div>
-    </main>
+          </h6>
+        </hgroup>
+      </section>
+      <section className='time2'>
+        <div className='grid kbdThingy'>
+          <div>
+            <kbd>Subuh</kbd>
+            <p>{data.data[0].fajr.slice(0, 5)}</p>
+          </div>
+          <div>
+            <kbd>Syuruk</kbd>
+            <p>{data.data[0].syuruk.slice(0, 5)}</p>
+          </div>
+          <div>
+            <kbd>Zuhur</kbd>
+            <p>{data.data[0].dhuhr.slice(0, 5)}</p>
+          </div>
+          <div>
+            <kbd>Asar</kbd>
+            <p>{data.data[0].asr.slice(0, 5)}</p>
+          </div>
+          <div>
+            <kbd>Maghrib</kbd>
+            <p>{data.data[0].maghrib.slice(0, 5)}</p>
+          </div>
+          <div>
+            <kbd>Isha</kbd>
+            <p>{data.data[0].isha.slice(0, 5)}</p>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
