@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import styles from '../styles/Home.module.css';
 
 export default function Time() {
