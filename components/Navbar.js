@@ -1,98 +1,59 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import { Box, Button } from '@mui/material';
 
 export default function Navbar() {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <nav className={styles.navbar}>
-          <Link href='/'>
-            <a className='navbar-brand'>
-              {/* <Image
-                src='/images/logo.png'
-                width='30'
-                height='30'
-                className='d-inline-block align-top'
-                alt=''
-              /> */}
-              <span className='ml-2'>
-                <strong>Waktu Solat</strong>
-              </span>
-            </a>
-          </Link>
-          <Link href='/quran'>
-            <a className='navbar-brand'>
-              {/* <Image
-                src='/images/logo.png'
-                width='30'
-                height='30'
-                className='d-inline-block align-top'
-                alt=''
-              /> */}
-              <span className='ml-2'>
-                <strong>Quran</strong>
-              </span>
-            </a>
-          </Link>
-          <Link href='/quran'>
-            <a className='navbar-brand'>
-              {/* <Image
-                src='/images/logo.png'
-                width='30'
-                height='30'
-                className='d-inline-block align-top'
-                alt=''
-              /> */}
-              <span className='ml-2'>
-                <strong>Hadith</strong>
-              </span>
-            </a>
-          </Link>
-          <Link href='/quran'>
-            <a className='navbar-brand'>
-              {/* <Image
-                src='/images/logo.png'
-                width='30'
-                height='30'
-                className='d-inline-block align-top'
-                alt=''
-              /> */}
-              <span className='ml-2'>
-                <strong>Radio</strong>
-              </span>
-            </a>
-          </Link>
-          <Link href='/quran'>
-            <a className='navbar-brand'>
-              {/* <Image
-                src='/images/logo.png'
-                width='30'
-                height='30'
-                className='d-inline-block align-top'
-                alt=''
-              /> */}
-              <span className='ml-2'>
-                <strong>Chat</strong>
-              </span>
-            </a>
-          </Link>
-          <Link href='/quran'>
-            <a className='navbar-brand'>
-              {/* <Image
-                src='/images/logo.png'
-                width='30'
-                height='30'
-                className='d-inline-block align-top'
-                alt=''
-              /> */}
-              <span className='ml-2'>
-                <strong>About</strong>
-              </span>
-            </a>
-          </Link>
-        </nav>
-      </main>
-    </div>
+    <Box
+      display='flex'
+      flexDirection='row'
+      justifyContent='space-between'
+      alignItems='center'
+      padding='1rem'
+      backgroundColor='#fff'
+      borderBottom='1px solid #eaeaea'
+    >
+      <Link href='/'>
+        <Button variant='text'>
+          <span>
+            <strong>Waktu Solat</strong>
+          </span>
+        </Button>
+      </Link>
+      <Link href='/quran'>
+        <Button variant='text'>
+          <span>
+            <strong>Quran</strong>
+          </span>
+        </Button>
+      </Link>
+      <Link href='/quran'>
+        <Button variant='text'>
+          <span>
+            <strong>Hadith</strong>
+          </span>
+        </Button>
+      </Link>
+      <Link href='/quran'>
+        <Button variant='text'>
+          <span>
+            <strong>Radio</strong>
+          </span>
+        </Button>
+      </Link>
+      <Link href='/quran'>
+        <Button variant='text'>
+          <span>
+            <strong>Chat</strong>
+          </span>
+        </Button>
+      </Link>
+      <Link href='/quran'>
+        <Button variant='text'>
+          <span>
+            <strong>About</strong>
+          </span>
+        </Button>
+      </Link>
+    </Box>
   );
 }
