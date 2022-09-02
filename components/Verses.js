@@ -7,7 +7,6 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
 
 export default function Verses() {
   const router = useRouter();
-
   const { surah } = router.query;
   const { data, error } = useSWR(
     `https://api.waktusolat.me/quran/my/${surah}`,

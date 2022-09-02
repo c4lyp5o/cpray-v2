@@ -4,7 +4,7 @@ export default function Radio() {
   return (
     <>
       <main className='container'>
-        <div className='radio-centered'>
+        <div className={styles.flexContainer}>
           <ul>
             <li className={styles.radiolist}>
               <span className='radiotext'>

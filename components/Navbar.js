@@ -28,7 +28,7 @@ export default function Navbar() {
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link href='/'>
+            <Link href=''>
               <ActiveLink href='/' title='Waktu Solat' />
             </Link>
           </li>
@@ -63,6 +63,7 @@ export default function Navbar() {
           </li>
         </ul>
       </nav>
+      <hr />
     </header>
   );
 }

@@ -56,27 +56,27 @@ export default function Time() {
               id={`${data.nextSolat.name === 'syuruk' ? 'breath-light' : ''}`}
             >
               <kbd>Syuruk</kbd>
-              <p>{data.data[0].syuruk.slice(0, 5)}</p>
+              <h4>{data.data[0].syuruk.slice(0, 5)}</h4>
             </div>
             <div
               id={`${data.nextSolat.name === 'dhuhr' ? 'breath-light' : ''}`}
             >
               <kbd>Zuhur</kbd>
-              <p>{data.data[0].dhuhr.slice(0, 5)}</p>
+              <h4>{data.data[0].dhuhr.slice(0, 5)}</h4>
             </div>
             <div id={`${data.nextSolat.name === 'asr' ? 'breath-light' : ''}`}>
               <kbd>Asar</kbd>
-              <p>{data.data[0].asr.slice(0, 5)}</p>
+              <h4>{data.data[0].asr.slice(0, 5)}</h4>
             </div>
             <div
               id={`${data.nextSolat.name === 'maghrib' ? 'breath-light' : ''}`}
             >
               <kbd>Maghrib</kbd>
-              <p>{data.data[0].maghrib.slice(0, 5)}</p>
+              <h4>{data.data[0].maghrib.slice(0, 5)}</h4>
             </div>
             <div id={`${data.nextSolat.name === 'isha' ? 'breath-light' : ''}`}>
               <kbd>Isha</kbd>
-              <p>{data.data[0].isha.slice(0, 5)}</p>
+              <h4>{data.data[0].isha.slice(0, 5)}</h4>
             </div>
           </div>
         </div>

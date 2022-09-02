@@ -10,6 +10,13 @@
   padding: 0 2rem;
 }
 
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .navbar {
   padding-top: 2rem;
   flex: 1;
