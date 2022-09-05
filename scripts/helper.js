@@ -167,3 +167,12 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
     </div>
   );
 }
+
+export const nameConverter = {
+  fajr: 'Subuh',
+  isyraq: 'Syuruk',
+  dhuhr: 'Zohor',
+  asr: 'Asar',
+  maghrib: 'Maghrib',
+  isha: 'Isyak',
+};

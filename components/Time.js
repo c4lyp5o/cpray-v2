@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import Spin from './Spin';
+import { nameConverter } from '../scripts/helper';
 import styles from '../styles/Home.module.css';
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -40,20 +41,20 @@ export default function Time() {
           </h6>
           <h6>{data.zone}</h6>
           <h6>
-            Waktu {data.nextSolat.name} akan masuk dalam {data.nextSolat.hours}{' '}
-            jam {data.nextSolat.minutes} minit
+            Waktu {nameConverter[data.nextSolat.name]} akan masuk dalam{' '}
+            {data.nextSolat.hours} jam {data.nextSolat.minutes} minit
           </h6>
         </hgroup>
       </section>
       <section>
         <div className={styles.centerAll}>
-          <div className='grid kbdThingy'>
+          <div className='grid'>
             <div id={`${data.nextSolat.name === 'fajr' ? 'breath-light' : ''}`}>
               <kbd>Subuh</kbd>
               <h4>{data.data[0].fajr.slice(0, 5)}</h4>
             </div>
             <div
-              id={`${data.nextSolat.name === 'syuruk' ? 'breath-light' : ''}`}
+              id={`${data.nextSolat.name === 'isyraq' ? 'breath-light' : ''}`}
             >
               <kbd>Syuruk</kbd>
               <h4>{data.data[0].syuruk.slice(0, 5)}</h4>
