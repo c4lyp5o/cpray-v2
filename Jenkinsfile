@@ -1,25 +1,11 @@
 pipeline {
-    agent any
-
+    agent {
+        docker { image 'node:16.13.1-alpine' }
+    }
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'                
-                    sh '''#!/usr/bin/ash
-                    docker stop cpray-v2'''
-                    echo 'Done stopping docker container'
-                
-            }
-        }
         stage('Test') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh 'node --version'
             }
         }
     }
-}
