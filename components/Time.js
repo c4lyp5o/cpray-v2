@@ -41,8 +41,13 @@ export default function Time() {
           </h6>
           <h6>{data.zone}</h6>
           <h6>
-            Waktu {nameConverter[data.nextSolat.name]} akan masuk dalam{' '}
-            {data.nextSolat.hours} jam {data.nextSolat.minutes} minit
+            {nameConverter[data.nextSolat.name]} akan masuk dalam{' '}
+            {data.nextSolat.hours === 0
+              ? data.nextSolat.minutes + ' minit'
+              : data.nextSolat.hours +
+                ' jam ' +
+                data.nextSolat.minutes +
+                ' minit'}
           </h6>
         </hgroup>
       </section>

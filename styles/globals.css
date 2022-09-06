@@ -158,11 +158,13 @@ a {
 
 @media only screen and (max-width: 425px) {
   .grid {
-    width: 100%;
+    width: 99%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 12px;
+    align-self: center;
+    align-items: center;
     justify-content: space-between;
   }
   .grid > div {
