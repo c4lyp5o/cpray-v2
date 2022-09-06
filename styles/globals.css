@@ -87,6 +87,7 @@ a {
 }
 
 #breath-light {
+  justify-self: center;
   width: 120px;
   height: 80px;
   margin-bottom: 35px;
@@ -155,13 +156,14 @@ a {
   animation-iteration-count: infinite;
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (max-width: 425px) {
   .grid {
-    display: inline-flex;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 12px;
-    width: 55%;
-    justify-content: center;
+    justify-content: space-between;
   }
   .grid > div {
     margin: 20px;

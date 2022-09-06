@@ -3,10 +3,13 @@ import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
 
 export default function Navbar() {
-  function ActiveLink({ href, title }) {
+  function ActiveLink({ root, href, title }) {
     const router = useRouter();
     const style = {
-      color: router.asPath == href ? '#fdd835' : '#039be5',
+      color:
+        router.pathname == href || router.pathname == root
+          ? '#fdd835'
+          : '#039be5',
     };
 
     const handleClick = (e) => {
@@ -28,14 +31,10 @@ export default function Navbar() {
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link href=''>
-              <ActiveLink href='/' title='Waktu Solat' />
-            </Link>
+            <ActiveLink root='/[zone]' href='/' title='Waktu Solat' />
           </li>
           <li>
-            <Link href='/quran'>
-              <ActiveLink href='/quran' title='Al Quran' />
-            </Link>
+            <ActiveLink root='/quran/[surah]' href='/quran' title='Al Quran' />
           </li>
           {/* <li>
             <Link href='/hadith'>

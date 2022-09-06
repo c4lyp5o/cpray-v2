@@ -127,7 +127,7 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
               onClick={goToPreviousPage}
               className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
             >
-              Sebelumnya
+              {'<'}
             </button>
 
             {/* show page numbers */}
@@ -148,7 +148,7 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
               onClick={goToNextPage}
               className={`next ${currentPage === pages ? 'disabled' : ''}`}
             >
-              Seterusnya
+              {'>'}
             </button>
           </div>
           <div />

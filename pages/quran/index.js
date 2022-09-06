@@ -39,40 +39,33 @@ function Quran() {
 
   return (
     <main className='container'>
-      <div className='grid'>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <select
-              className='damnbuttons'
-              onChange={(e) => (surahChoice.current = e.target.value)}
-              id='surah'
-              required=''
-              name='surah'
-            >
-              <option value=''>Sila pilih surah...</option>
-              {surah.data.map((thesurah, index) => (
-                <option key={index} value={index}>
-                  {thesurah.transliteration}
-                </option>
-              ))}
-            </select>
-            <button type='submit' value='Submit'>
-              Pilih
-            </button>
-          </form>
-        </div>
-        <div>
-          <hgroup>
-            <h1 className={styles.quranicIntro}>{randomAyat.data.arabic}</h1>
-            <p className={styles.intro}>{randomAyat.data.malayTranslation}</p>
-            <small>{randomAyat.data.fromSurah}</small>
-            {', '}
-            <small>{randomAyat.data.ayatNumber}</small>
-          </hgroup>
-        </div>
-      </div>
-      <br />
-      <br />
+      <form onSubmit={handleSubmit}>
+        <select
+          className='damnbuttons'
+          onChange={(e) => (surahChoice.current = e.target.value)}
+          id='surah'
+          required=''
+          name='surah'
+        >
+          <option value=''>Sila pilih surah...</option>
+          {surah.data.map((thesurah, index) => (
+            <option key={index} value={index}>
+              {thesurah.transliteration}
+            </option>
+          ))}
+        </select>
+        <button type='submit' value='Submit'>
+          Pilih
+        </button>
+      </form>
+
+      <hgroup>
+        <h1 className={styles.quranicIntro}>{randomAyat.data.arabic}</h1>
+        <p className={styles.intro}>{randomAyat.data.malayTranslation}</p>
+        <small>{randomAyat.data.fromSurah}</small>
+        {', '}
+        <small>{randomAyat.data.ayatNumber}</small>
+      </hgroup>
     </main>
   );
 }
