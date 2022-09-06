@@ -8,24 +8,13 @@
 }
 
 .centerAll {
-  justify-self: center;
-  justify-items: center;
-  justify-content: center;
+  /* justify-self: space-between;
+  justify-items: space-between;
+  justify-content: space-between; */
   align-items: center;
   align-self: center;
   align-content: center;
   text-align: center;
-}
-
-.container {
-  padding: 0 2rem;
-}
-
-.flexContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 .navbar {
@@ -33,15 +22,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.main {
-  padding: 2rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
