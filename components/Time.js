@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.css';
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-export default function Time() {
+export default function Time({ setDaerah }) {
   const router = useRouter();
   const { zone } = router.query;
   const [timeNow, setTimeNow] = useState(new Date());
@@ -26,6 +26,7 @@ export default function Time() {
       return () => clearInterval(timer);
     };
     startTimer();
+    setDaerah(data.zone);
   }, []);
   if (error) return <div>failed to load</div>;
   if (!data) return <Spin />;

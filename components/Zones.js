@@ -49,7 +49,7 @@ export default function Data() {
         </optgroup>
         <optgroup label='Negeri Sembilan'>
           <option value='ngs01'>JEMPOL DAN TAMPIN</option>
-          <option value='ngs01'>
+          <option value='ngs02'>
             PORT DICKSON, SEREMBAN, KUALA PILAH, JELEBU DAN REMBAU
           </option>
         </optgroup>
