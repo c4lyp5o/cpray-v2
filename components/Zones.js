@@ -1,27 +1,15 @@
-import { useRef } from 'react';
 import { useRouter } from 'next/router';
 
 export default function Data() {
   const router = useRouter();
-  // const zone = useRef();
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   router.push(`/${zone.current}`);
-  // };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // router.push(`/${zone.current}`);
     const value = e.target.zone.value;
     router.push(`/[zone]`, `/${value}`);
   };
   return (
     <form onSubmit={handleSubmit}>
-      <select
-        id='zone'
-        required=''
-        name='zone'
-        // onChange={(e) => (zone.current = e.target.value)}
-      >
+      <select id='zone' required='' name='zone'>
         <option value=''>Sila pilih zon...</option>
         <optgroup label='Kedah'>
           <option value='kdh01'>KOTA SETAR, POKOK SENA DAN KUBANG PASU</option>

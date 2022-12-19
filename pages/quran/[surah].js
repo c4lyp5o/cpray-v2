@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 import Verses from '../../components/Verses';
 import Spin from '../../components/Spin';
 
