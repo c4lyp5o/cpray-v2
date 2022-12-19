@@ -83,7 +83,13 @@ export async function giveTheKeetab(id) {
   }
 }
 
-export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
+export function Pagination({
+  data,
+  setPage,
+  RenderComponent,
+  pageLimit,
+  dataLimit,
+}) {
   const [pages] = useState(Math.round(data.length / dataLimit));
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -93,10 +99,12 @@ export function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
 
   function goToNextPage() {
     setCurrentPage((page) => page + 1);
+    setPage((page) => page + 1);
   }
 
   function goToPreviousPage() {
     setCurrentPage((page) => page - 1);
+    setPage((page) => page - 1);
   }
 
   function changePage(event) {
