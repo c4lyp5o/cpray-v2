@@ -1,21 +1,15 @@
-import { useRef } from 'react';
 import { useRouter } from 'next/router';
 
 export default function Data() {
   const router = useRouter();
-  const zone = useRef();
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    router.push(`/${zone.current}`);
+    const value = e.target.zone.value;
+    router.push(`/[zone]`, `/${value}`);
   };
   return (
-    <form>
-      <select
-        id='zone'
-        required=''
-        name='zone'
-        onChange={(e) => (zone.current = e.target.value)}
-      >
+    <form onSubmit={handleSubmit}>
+      <select id='zone' required='' name='zone'>
         <option value=''>Sila pilih zon...</option>
         <optgroup label='Kedah'>
           <option value='kdh01'>KOTA SETAR, POKOK SENA DAN KUBANG PASU</option>
@@ -49,7 +43,7 @@ export default function Data() {
         </optgroup>
         <optgroup label='Negeri Sembilan'>
           <option value='ngs01'>JEMPOL DAN TAMPIN</option>
-          <option value='ngs01'>
+          <option value='ngs02'>
             PORT DICKSON, SEREMBAN, KUALA PILAH, JELEBU DAN REMBAU
           </option>
         </optgroup>
@@ -163,9 +157,7 @@ export default function Data() {
           <option value='wly02'>Labuan</option>
         </optgroup>
       </select>
-      <button type='submit' onClick={handleClick}>
-        Cari
-      </button>
+      <button type='submit'>Cari</button>
     </form>
   );
 }

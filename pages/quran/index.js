@@ -1,19 +1,17 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Spin from '../../components/Spin';
 import styles from '../../styles/Home.module.css';
 
 function Quran() {
   const router = useRouter();
-  const surahChoice = useRef();
   const [surah, setSurah] = useState(null);
   const [randomAyat, setRandomAyat] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    surahChoice.current++;
-    console.log(surahChoice);
-    router.push(`/quran/${surahChoice.current}`);
+    const value = e.target.surah.value;
+    router.push(`/quran/${parseInt(value) + 1}`);
   }
 
   useEffect(() => {
@@ -40,13 +38,7 @@ function Quran() {
   return (
     <main className='container'>
       <form onSubmit={handleSubmit}>
-        <select
-          className='damnbuttons'
-          onChange={(e) => (surahChoice.current = e.target.value)}
-          id='surah'
-          required=''
-          name='surah'
-        >
+        <select className='damnbuttons' id='surah' name='surah'>
           <option value=''>Sila pilih surah...</option>
           {surah.data.map((thesurah, index) => (
             <option key={index} value={index}>

@@ -5,9 +5,13 @@ import Spin from './Spin';
 import { nameConverter } from '../scripts/helper';
 import styles from '../styles/Home.module.css';
 
-const fetcher = (url) => fetch(url).then((r) => r.json());
+const fetcher = async (url) => {
+  const res = await fetch(url);
+  const data = await res.json();
+  return data;
+};
 
-export default function Time() {
+export default function Time({ setDaerah }) {
   const router = useRouter();
   const { zone } = router.query;
   const [timeNow, setTimeNow] = useState(new Date());
@@ -18,6 +22,7 @@ export default function Time() {
       suspense: true,
     }
   );
+
   useEffect(() => {
     const startTimer = () => {
       const timer = setInterval(() => {
@@ -26,9 +31,12 @@ export default function Time() {
       return () => clearInterval(timer);
     };
     startTimer();
-  }, []);
+    setDaerah(data.zone);
+  }, [zone]);
+
+  if (!zone || !data) return <Spin />;
   if (error) return <div>failed to load</div>;
-  if (!data) return <Spin />;
+
   return (
     <>
       <section>
@@ -89,4 +97,16 @@ export default function Time() {
       </section>
     </>
   );
+}
+
+export async function getServersideProps() {
+  const res = await fetch(
+    'https://api.waktusolat.me/waktusolat/today/kuala-lumpur'
+  );
+  const data = await res.json();
+  return {
+    props: {
+      data,
+    },
+  };
 }
