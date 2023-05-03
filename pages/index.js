@@ -1,15 +1,21 @@
 import Head from 'next/head';
+
 import Zones from '../components/Zones';
 
 export default function Home() {
   return (
-    <main className='container'>
+    <>
       <Head>
-        <title>Waktu Solat</title>
-        <meta name='description' content='Powered by Next' />
+        <title>Waktu Solat Malaysia</title>
+        <meta
+          name='description'
+          content='Waktu Solat Untuk Malaysia Straight Dari JAKIM'
+        />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Zones />
-    </main>
+      <main className='container'>
+        <Zones />
+      </main>
+    </>
   );
 }
