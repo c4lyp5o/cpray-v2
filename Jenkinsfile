@@ -4,13 +4,8 @@ pipeline {
     stages {
         stage('Purge') {
             steps {
-                script {
-                    def container = dockerContainer(name: 'cpray-v2')
-                    if (container) {
-                        sh "docker stop ${container.id}"
-                        sh "docker rm ${container.id}"
-                    }
-                }
+                sh "docker stop cpray-v2 || true"
+                sh "docker rm cpray-v2 || true"
             }
         }
         stage('Build') {
