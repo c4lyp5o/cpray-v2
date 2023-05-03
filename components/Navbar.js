@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 import styles from '../styles/Home.module.css';
 
 export default function Navbar() {
@@ -36,15 +37,16 @@ export default function Navbar() {
           <li>
             <ActiveLink root='/quran/[surah]' href='/quran' title='Al Quran' />
           </li>
-          {/* <li>
-            <Link href='/hadith'>
+          <li>
+            {/* <Link href='/hadith'>
               <a className='navbar-brand'>
                 <span className='ml-2'>
                   <strong>Hadith</strong>
                 </span>
               </a>
-            </Link>
-          </li> */}
+            </Link> */}
+            <ActiveLink href='/hadith' title='Hadis' />
+          </li>
           <li>
             <Link href='/radio'>
               <ActiveLink href='/radio' title='Radio' />

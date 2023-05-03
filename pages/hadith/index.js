@@ -1,14 +1,8 @@
-// export default function Hadith() {
-//   return (
-//     <div className='container'>
-//       <main className='main'>
-//         <h1 className='title'>Waktu Solat Malaysia</h1>
-//       </main>
-//     </div>
-//   );
-// }
 import { useState, useEffect } from 'react';
 import { getTheKeetab, giveTheKeetab, Pagination } from '../../scripts/helper';
+import Head from 'next/head';
+
+import Spin from '../../components/Spin';
 
 function Hadith() {
   const [intro, setIntro] = useState(true);
@@ -18,11 +12,11 @@ function Hadith() {
   const [display, setDisplay] = useState(false);
 
   useEffect(() => {
-    async function Awwalun() {
-      setKeetab(await getTheKeetab());
-    }
-    Awwalun();
-    document.title = 'Hadith';
+    const awwalun = async () => {
+      const { msg } = await getTheKeetab();
+      setKeetab(msg);
+    };
+    awwalun();
   }, []);
 
   function TheIntro() {
@@ -32,13 +26,22 @@ function Hadith() {
   }
 
   async function handleSubmit(event) {
-    setHadith([]);
     event.preventDefault();
-    await giveTheKeetab(search).then((data) => {
-      setHadith(data);
-      setIntro(false);
-      setDisplay(true);
-    });
+    setDisplay(true);
+    setHadith(null);
+    await giveTheKeetab(search)
+      .then((data) => {
+        setHadith(data);
+        setIntro(false);
+        setDisplay(true);
+      })
+      .catch((error) => {
+        console.log(error);
+        setHadith('Harap Maaf, Sila Cuba Lagi');
+      })
+      .finally(() => {
+        setDisplay(false);
+      });
   }
 
   async function handleChange(event) {
@@ -55,51 +58,56 @@ function Hadith() {
     );
   }
 
-  function PaginateHadith() {
-    if (display)
-      return (
-        <Pagination
-          data={hadith}
-          RenderComponent={HadithData}
-          pageLimit={5}
-          dataLimit={1}
-        />
-      );
-  }
+  // function PaginateHadith() {
+  //   if (display)
+  //     return (
+  //       <Pagination
+  //         data={hadith}
+  //         RenderComponent={HadithData}
+  //         pageLimit={5}
+  //         dataLimit={1}
+  //       />
+  //     );
+  // }
 
   return (
-    <main className='container'>
-      <div className='grid'>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <select
-              className='damnbuttons'
-              onChange={handleChange}
-              id='keetab'
-              required=''
-              name='keetab'
-            >
-              <option value=''>Sila pilih kitab...</option>
-              {keetab.map((solkeetab) => (
-                <option key={solkeetab.id} value={solkeetab.id}>
-                  {solkeetab.name}
-                </option>
-              ))}
-            </select>
-            <button type='submit' value='Submit'>
-              Pilih
-            </button>
-          </form>
+    <>
+      <Head>
+        <title>Hadis</title>
+        <meta
+          name='description'
+          content='Koleksi hadis dari kutubussittah dalam bahasa Melayu'
+        />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <main className='container'>
+        <div className='grid'>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <select onChange={handleChange} required>
+                <option value=''>Sila pilih kitab...</option>
+                {keetab.map((solkeetab) => (
+                  <option key={solkeetab.id} value={solkeetab.id}>
+                    {solkeetab.toUpperCase()}
+                  </option>
+                ))}
+              </select>
+              <button type='submit' value='Submit'>
+                Pilih
+              </button>
+            </form>
+          </div>
+          <div />
+          <div />
+          <div>
+            <h1>Hadith</h1>
+          </div>
         </div>
-        <div />
-        <div />
-        <div>
-          <h1>Hadith</h1>
-        </div>
-      </div>
-      <div>{PaginateHadith()}</div>
-      {TheIntro()}
-    </main>
+        {/* <div>{PaginateHadith()}</div> */}
+        {display ? <Spin /> : hadith.hadis}
+        {TheIntro()}
+      </main>
+    </>
   );
 }
 

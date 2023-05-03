@@ -1,8 +1,19 @@
+import Head from 'next/head';
+
 import Image from 'next/image';
 import styles from '../../styles/Home.module.css';
+
 export default function Radio() {
   return (
     <>
+      <Head>
+        <title>Radio</title>
+        <meta
+          name='description'
+          content='Beberapa stesen radio internet islamik'
+        />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
       <main className='container'>
         <div className={styles.flexContainer}>
           <ul>

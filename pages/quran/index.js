@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
+
 import Spin from '../../components/Spin';
 import styles from '../../styles/Home.module.css';
 
@@ -16,49 +18,60 @@ function Quran() {
 
   useEffect(() => {
     const getRandomAyat = async () => {
-      const randomAyat = await fetch(`https://api.waktusolat.me/quran/random`);
-      const randomAyatData = await randomAyat.json();
-      return randomAyatData;
+      const response = await fetch(`https://api.waktusolat.me/quran/random`);
+      const data = await response.json();
+      return data;
     };
+
     const getSurah = async () => {
-      const surah = await fetch(`https://api.waktusolat.me/quran`);
-      const surahData = await surah.json();
-      return surahData;
+      const response = await fetch(`https://api.waktusolat.me/quran`);
+      const data = await response.json();
+      return data;
     };
-    getSurah().then((res) => {
-      setSurah(res);
-    });
-    getRandomAyat().then((res) => {
-      setRandomAyat(res);
-    });
+
+    Promise.all([getRandomAyat(), getSurah()]).then(
+      ([randomAyatData, surahData]) => {
+        setRandomAyat(randomAyatData);
+        setSurah(surahData);
+      }
+    );
   }, []);
 
   if (!surah || !randomAyat) return <Spin />;
 
   return (
-    <main className='container'>
-      <form onSubmit={handleSubmit}>
-        <select className='damnbuttons' id='surah' name='surah'>
-          <option value=''>Sila pilih surah...</option>
-          {surah.data.map((thesurah, index) => (
-            <option key={index} value={index}>
-              {thesurah.transliteration}
-            </option>
-          ))}
-        </select>
-        <button type='submit' value='Submit'>
-          Pilih
-        </button>
-      </form>
-
-      <hgroup>
-        <h1 className={styles.quranicIntro}>{randomAyat.data.arabic}</h1>
-        <p className={styles.intro}>{randomAyat.data.malayTranslation}</p>
-        <small>{randomAyat.data.fromSurah}</small>
-        {', '}
-        <small>{randomAyat.data.ayatNumber}</small>
-      </hgroup>
-    </main>
+    <>
+      <Head>
+        <title>Al Quran</title>
+        <meta
+          name='description'
+          content='Al-Quran dalam bahasa English dan Melayu'
+        />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <main className='container'>
+        <form onSubmit={handleSubmit}>
+          <select className='damnbuttons' id='surah' name='surah'>
+            <option value=''>Sila pilih surah...</option>
+            {surah.data.map((thesurah, index) => (
+              <option key={index} value={index}>
+                {thesurah.transliteration}
+              </option>
+            ))}
+          </select>
+          <button type='submit' value='Submit'>
+            Pilih
+          </button>
+        </form>
+        <hgroup>
+          <h1 className={styles.quranicIntro}>{randomAyat.data.arabic}</h1>
+          <p className={styles.intro}>{randomAyat.data.malayTranslation}</p>
+          <small>{randomAyat.data.fromSurah}</small>
+          {', '}
+          <small>{randomAyat.data.ayatNumber}</small>
+        </hgroup>
+      </main>
+    </>
   );
 }
 

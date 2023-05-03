@@ -60,11 +60,13 @@ export async function giveQuranAudio(surah) {
 
 export async function getTheKeetab() {
   try {
-    const keetab = await fetch('https://api.hadith.sutanlab.id/books', {
+    const res = await fetch('https://api.waktusolat.me/hadis', {
       crossDomain: true,
       method: 'GET',
     });
-    return keetab.data;
+    const keetabNames = await res.json();
+    keetabNames.msg = keetabNames.msg.split(', ');
+    return keetabNames;
   } catch (error) {
     console.log(error);
   }
@@ -72,106 +74,81 @@ export async function getTheKeetab() {
 
 export async function giveTheKeetab(id) {
   try {
-    const url = `https://api.hadith.sutanlab.id/books/${id}?range=1-5`;
-    const hadiths = await fetch(url, {
+    const url = `https://api.waktusolat.me/hadis/${id.toLowerCase()}`;
+    const res = await fetch(url, {
       crossDomain: true,
       method: 'GET',
     });
-    return hadiths.data.hadiths;
+    const randomHadis = await res.json();
+    return randomHadis;
   } catch (error) {
     console.log(error);
   }
 }
 
 export function Pagination({
-  data,
+  data = [],
   setPage,
   RenderComponent,
-  pageLimit,
-  dataLimit,
+  pageLimit = 5,
+  dataLimit = 10,
 }) {
-  const [pages] = useState(Math.round(data.length / dataLimit));
+  const pages = Math.ceil(data.length / dataLimit);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    window.scrollTo({ behavior: 'smooth', top: '0px' });
+    window.scrollTo({ behavior: 'smooth', top: 0 });
   }, [currentPage]);
 
-  function goToNextPage() {
-    setCurrentPage((page) => page + 1);
-    setPage((page) => page + 1);
-  }
-
-  function goToPreviousPage() {
-    setCurrentPage((page) => page - 1);
-    setPage((page) => page - 1);
-  }
-
-  function changePage(event) {
-    const pageNumber = Number(event.target.textContent);
+  const goToPage = (pageNumber) => {
     setCurrentPage(pageNumber);
-  }
+    setPage(pageNumber);
+  };
 
   const getPaginatedData = () => {
-    const startIndex = currentPage * dataLimit - dataLimit;
-    const endIndex = startIndex + dataLimit;
-    return data.slice(startIndex, endIndex);
+    const startIndex = (currentPage - 1) * dataLimit;
+    return data.slice(startIndex, startIndex + dataLimit);
   };
 
-  const getPaginationGroup = () => {
-    let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-    return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
-  };
+  const paginationGroup = Array.from(
+    { length: Math.min(pages, pageLimit) },
+    (_, i) => i + Math.floor((currentPage - 1) / pageLimit) * pageLimit + 1
+  );
 
-  function showPaginateNav() {
-    if (pages <= 1) return null;
-    else if (pages > 1)
-      return (
-        <div className='grid'>
-          <div />
-          <div className='pagination'>
-            {/* previous button */}
-            <button
-              onClick={goToPreviousPage}
-              className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
-            >
-              {'<'}
-            </button>
-
-            {/* show page numbers */}
-            {getPaginationGroup().map((item, index) => (
-              <button
-                key={index}
-                onClick={changePage}
-                className={`paginationItem ${
-                  currentPage === item ? 'active' : null
-                }`}
-              >
-                <span>{item}</span>
-              </button>
-            ))}
-
-            {/* next button */}
-            <button
-              onClick={goToNextPage}
-              className={`next ${currentPage === pages ? 'disabled' : ''}`}
-            >
-              {'>'}
-            </button>
-          </div>
-          <div />
-        </div>
-      );
-  }
+  const showPagination = pages > 1;
 
   return (
-    <div className={styles.centerAll}>
-      <div className='dataContainer'>
-        {getPaginatedData().map((d, idx) => (
-          <RenderComponent key={idx} data={d} />
+    <div className={styles.paginationContainer}>
+      <div className={styles.dataContainer}>
+        {getPaginatedData().map((d, i) => (
+          <RenderComponent key={i} data={d} />
         ))}
       </div>
-      {showPaginateNav()}
+
+      {showPagination && (
+        <div className={styles.pagination}>
+          <button onClick={() => goToPage(1)} disabled={currentPage === 1}>
+            &laquo;
+          </button>
+
+          {paginationGroup.map((pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => goToPage(pageNumber)}
+              className={currentPage === pageNumber ? styles.active : ''}
+            >
+              {pageNumber}
+            </button>
+          ))}
+
+          <button
+            onClick={() => goToPage(pages)}
+            disabled={currentPage === pages}
+          >
+            &raquo;
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -4,7 +4,7 @@ FROM node:alpine
 # update the package index
 RUN apk update
 
-# add busybox initscripts to the PATH
+# add tzdata
 RUN apk add --no-cache tzdata
 
 # set timezone data
@@ -16,7 +16,7 @@ WORKDIR /usr/src/app
 # copy the package.json files from local machine to the workdir in container
 COPY package*.json ./
 
-# run npm install in our local machine
+# run yarn install in our local machine
 RUN yarn install
 
 # copy the generated modules and all other files to the container
