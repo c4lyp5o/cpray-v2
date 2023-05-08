@@ -5,14 +5,14 @@ pipeline {
         telegramChatId = credentials('telegram-chat-id')        
     }
     
-    pre {
-        script {
+    stages {
+        stage('Pre') {
+            steps {
+                script {
                 def message = "Build started for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
                 telegramSend(message: message, chatId: telegramChatId)
             }
-    }
-
-    stages {
+        }                
         stage('Purge') {
             steps {
                 echo 'Stopping container and removing current container..'
