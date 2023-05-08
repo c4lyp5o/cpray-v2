@@ -2,19 +2,11 @@ pipeline {
     agent any
 
     environment {
-        telegramBotId = credentials('telegram-bot-id')
+        telegramBotToken = credentials('ez-series-bot-token')
         telegramChatId = credentials('telegram-chat-id')        
     }
-    
+
     stages {
-        stage('Pre') {
-            steps {
-                script {
-                    def message = "Build started for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
-                    telegramSend "✅ testing this telegram bot"
-                }
-            }
-        }
         stage('Purge') {
             steps {
                 echo 'Stopping container and removing current container..'
@@ -40,33 +32,29 @@ pipeline {
 
     post {
         failure {
-            node {
-                script {
-                    def message = "Build failed for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
-                    telegramSend(message: message, chatId: -1001983955093)
-                }
+            script {
+                def message = "Build failed for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
+                telegramSend message: message, chatId: telegramChatId, token: telegramBotToken
             }
         }
 
         success {
-            node {
-                script {
-                    def prUrl = ''
-                    try {
-                        def prNumber = sh(
-                            script: 'git ls-remote --exit-code --heads origin "pull/*/head" | cut -d"/" -f3',
-                            returnStdout: true
-                        ).trim()
-                        prUrl = "https://github.com/c4lyp5o/cpray-v2/pull/${prNumber}"
-                    } catch (e) {
-                        // Do nothing
-                    }
-                    def message = "Build succeeded for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
-                    if (prUrl != '') {
-                        message += "\nPR: ${prUrl}"
-                    }
-                    telegramSend(message: message, chatId: -1001983955093)
+            script {
+                def prUrl = ''
+                try {
+                    def prNumber = sh(
+                        script: 'git ls-remote --exit-code --heads origin "pull/*/head" | cut -d"/" -f3',
+                        returnStdout: true
+                    ).trim()
+                    prUrl = "https://github.com/c4lyp5o/cpray-v2/pull/${prNumber}"
+                } catch (e) {
+                    // Do nothing
                 }
+                def message = "Build succeeded for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
+                if (prUrl != '') {
+                    message += "\nPR: ${prUrl}"
+                }
+                telegramSend message: message, chatId: telegramChatId, token: telegramBotToken
             }
         }
     }
