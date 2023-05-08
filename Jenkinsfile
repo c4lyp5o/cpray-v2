@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     def message = "Build started for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
-                    telegramSend(message: message, chatId: telegramChatId)
+                    telegramSend(message: message, chatId: -1001983955093)
                 }
             }
         }                
@@ -41,7 +41,7 @@ pipeline {
         failure {
             script {
                 def message = "Build failed for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
-                telegramSend(message: message, chatId: telegramChatId)
+                telegramSend(message: message, chatId: -1001983955093)
             }
         }
 
@@ -61,7 +61,7 @@ pipeline {
                 if (prUrl != '') {
                     message += "\nPR: ${prUrl}"
                 }
-                telegramSend(message: message, chatId: telegramChatId)
+                telegramSend(message: message, chatId: -1001983955093)
             }
         }
     }
