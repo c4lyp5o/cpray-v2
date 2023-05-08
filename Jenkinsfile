@@ -9,8 +9,9 @@ pipeline {
         stage('Pre') {
             steps {
                 script {
-                def message = "Build started for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
-                telegramSend(message: message, chatId: telegramChatId)
+                    def message = "Build started for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
+                    telegramSend(message: message, chatId: telegramChatId)
+                }
             }
         }                
         stage('Purge') {
