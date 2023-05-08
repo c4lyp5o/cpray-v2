@@ -2,8 +2,14 @@ pipeline {
     agent any
 
     environment {
-        telegramBotToken = credentials('ez-series-bot-token')
         telegramChatId = credentials('telegram-chat-id')        
+    }
+    
+    pre {
+        script {
+                def message = "Build started for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
+                telegramSend(message: message, chatId: telegramChatId)
+            }
     }
 
     stages {
@@ -34,7 +40,7 @@ pipeline {
         failure {
             script {
                 def message = "Build failed for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
-                telegramSend message: message, chatId: telegramChatId, token: telegramBotToken
+                telegramSend(message: message, chatId: telegramChatId)
             }
         }
 
@@ -54,7 +60,7 @@ pipeline {
                 if (prUrl != '') {
                     message += "\nPR: ${prUrl}"
                 }
-                telegramSend message: message, chatId: telegramChatId, token: telegramBotToken
+                telegramSend(message: message, chatId: telegramChatId)
             }
         }
     }
