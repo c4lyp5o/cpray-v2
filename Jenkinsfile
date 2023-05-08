@@ -19,7 +19,8 @@ pipeline {
                 script{
                     withCredentials([string(credentialsId: 'telegram-bot-token', variable: 'TOKEN'),
                     string(credentialsId: 'telegram-chat-id', variable: 'CHAT_ID')]) {
-                    telegramSend(message: 'test message', chatId: ${CHAT_ID})
+                            telegramSend(message: 'test message', chatId: ${CHAT_ID})
+                    }
                 }
             }
         }
