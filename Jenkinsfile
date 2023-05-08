@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Informing through telegram') {
             steps {
-                curl "https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=%F0%9F%9A%80%20Build%20started%20for%20${env.JOB_NAME}%20%23${env.BUILD_NUMBER}"
+                sh "curl -sS https://api.telegram.org/bot${telegramBotToken}/sendMessage -d chat_id=${telegramChatId} -d text='🔨 Building ${env.JOB_NAME} #${env.BUILD_NUMBER}...'"
             }
         }
         stage('Purge') {
@@ -39,7 +39,7 @@ pipeline {
         failure {
             script {
                 def message = "❌ Build failed for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
-                curl "https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=${message}"
+                sh "curl -sS https://api.telegram.org/bot${telegramBotToken}/sendMessage -d chat_id=${telegramChatId} -d text='${message}'"
             }
         }
 
@@ -59,7 +59,7 @@ pipeline {
                 if (prUrl != '') {
                     message += "\n🔗 PR: ${prUrl}"
                 }
-                curl "https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=${message}"
+                sh "curl -sS https://api.telegram.org/bot${telegramBotToken}/sendMessage -d chat_id=${telegramChatId} -d text='${message}'"
             }
         }
     }
