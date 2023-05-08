@@ -10,10 +10,19 @@ pipeline {
             steps {
                 script {
                     def message = "Build started for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
-                    telegramSend(message: message, chatId: -1001983955093)
+                    telegramSend "✅ testing this telegram bot"
                 }
             }
-        }                
+        }
+        stage('Pre2') {
+            steps {
+                script{
+                    withCredentials([string(credentialsId: ‘telegram-bot-token’, variable: ‘TOKEN’),
+                    string(credentialsId: ‘telegram-chat-id’, variable: ‘CHAT_ID’)]) {
+                    telegramSend(messsage:”test message”, chatId:${CHAT_ID})
+                }
+            }
+        }
         stage('Purge') {
             steps {
                 echo 'Stopping container and removing current container..'
@@ -53,7 +62,7 @@ pipeline {
                         script: 'git ls-remote --exit-code --heads origin "pull/*/head" | cut -d"/" -f3',
                         returnStdout: true
                     ).trim()
-                    prUrl = "https://github.com/<org>/<repo>/pull/${prNumber}"
+                    prUrl = "https://github.com/c4lyp5o/cpray-v2/pull/${prNumber}"
                 } catch (e) {
                     // Do nothing
                 }
