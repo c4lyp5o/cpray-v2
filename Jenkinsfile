@@ -7,6 +7,11 @@ pipeline {
     }
 
     stages {
+        stage('Informing through telegram') {
+            steps {
+                curl "https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=%F0%9F%9A%80%20Build%20started%20for%20${env.JOB_NAME}%20%23${env.BUILD_NUMBER}"
+            }
+        }
         stage('Purge') {
             steps {
                 echo 'Stopping container and removing current container..'
@@ -33,8 +38,8 @@ pipeline {
     post {
         failure {
             script {
-                def message = "Build failed for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
-                telegramSend message: message, chatId: telegramChatId, token: telegramBotToken
+                def message = "❌ Build failed for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
+                curl "https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=${message}"
             }
         }
 
@@ -50,11 +55,11 @@ pipeline {
                 } catch (e) {
                     // Do nothing
                 }
-                def message = "Build succeeded for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
+                def message = "✅ Build succeeded for ${env.JOB_NAME} #${env.BUILD_NUMBER}."
                 if (prUrl != '') {
-                    message += "\nPR: ${prUrl}"
+                    message += "\n🔗 PR: ${prUrl}"
                 }
-                telegramSend message: message, chatId: telegramChatId, token: telegramBotToken
+                curl "https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${telegramChatId}&text=${message}"
             }
         }
     }
