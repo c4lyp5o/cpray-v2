@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        telegramBotToken = credentials('ez-series-bot-token')
+        telegramBotToken = credentials('telegram-bot-token')
         telegramChatId = credentials('telegram-chat-id')        
     }
 
