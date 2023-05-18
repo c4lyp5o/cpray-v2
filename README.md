@@ -2,6 +2,7 @@
 
 In the name of God, most gracious, most merciful.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 [![Build Status](https://pipeline.calypsocloud.one/buildStatus/icon?job=waktusolat.me)](https://pipeline.calypsocloud.one/job/waktusolat.me/)
 
 Prayer Times displayer for Malaysia. Ported over from a Create React App to Nextjs with minor cosmetic changes.
