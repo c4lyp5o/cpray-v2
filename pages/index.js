@@ -1,8 +1,18 @@
 import Head from 'next/head';
+import { useEffect } from 'react';
 
 import Zones from '../components/Zones';
 
 export default function Home() {
+  useEffect(() => {
+    const visit = async () => {
+      await fetch('https://api.waktusolat.me/thanks').then((res) =>
+        console.log('Thanks for visiting!')
+      );
+    };
+    visit();
+  }, []);
+
   return (
     <>
       <Head>
