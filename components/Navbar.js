@@ -13,17 +13,14 @@ export default function Navbar() {
           : '#039be5',
     };
 
-    const handleClick = (e) => {
-      e.preventDefault();
-      router.push(href);
-    };
-
     return (
-      <a href={href} onClick={handleClick} style={style}>
-        <span>
-          <strong>{title}</strong>
-        </span>
-      </a>
+      <Link href={href}>
+        <a style={style}>
+          <span>
+            <strong>{title}</strong>
+          </span>
+        </a>
+      </Link>
     );
   }
 
@@ -38,29 +35,16 @@ export default function Navbar() {
             <ActiveLink root='/quran/[surah]' href='/quran' title='Al Quran' />
           </li>
           <li>
-            {/* <Link href='/hadith'>
-              <a className='navbar-brand'>
-                <span className='ml-2'>
-                  <strong>Hadith</strong>
-                </span>
-              </a>
-            </Link> */}
             <ActiveLink href='/hadith' title='Hadis' />
           </li>
           <li>
-            <Link href='/radio'>
-              <ActiveLink href='/radio' title='Radio' />
-            </Link>
+            <ActiveLink href='/radio' title='Radio' />
           </li>
           <li>
-            <Link href='/chat'>
-              <ActiveLink href='/chat' title='Chat' />
-            </Link>
+            <ActiveLink href='/chat' title='Chat' />
           </li>
           <li>
-            <Link href='/about'>
-              <ActiveLink href='/about' title='About Us' />
-            </Link>
+            <ActiveLink href='/about' title='About Us' />
           </li>
         </ul>
       </nav>

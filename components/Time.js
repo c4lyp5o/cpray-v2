@@ -5,11 +5,7 @@ import Spin from './Spin';
 import { nameConverter } from '../scripts/helper';
 import styles from '../styles/Home.module.css';
 
-const fetcher = async (url) => {
-  const res = await fetch(url);
-  const data = await res.json();
-  return data;
-};
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Time({ setDaerah }) {
   const router = useRouter();
@@ -44,8 +40,8 @@ export default function Time({ setDaerah }) {
           <h1>{timeNow.toLocaleTimeString()}</h1>
           <h6>{data.today.day}</h6>
           <h6>
-            {data.data[0].hijri.split(' ')[2]},{' '}
-            {data.data[0].date.split(' ')[0]}
+            {data.today.hijri.split(' / ')[1]},{' '}
+            {data.today.date.split(' / ')[1]}
           </h6>
           <h6>{data.zone}</h6>
           <h6>
@@ -97,16 +93,4 @@ export default function Time({ setDaerah }) {
       </section>
     </>
   );
-}
-
-export async function getServersideProps() {
-  const res = await fetch(
-    'https://api.waktusolat.me/waktusolat/today/kuala-lumpur'
-  );
-  const data = await res.json();
-  return {
-    props: {
-      data,
-    },
-  };
 }

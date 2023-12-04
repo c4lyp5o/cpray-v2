@@ -48,15 +48,15 @@ function Hadith() {
     setSearch(event.target.value);
   }
 
-  function HadithData(props) {
-    const { arab, id } = props.data;
-    return (
-      <div className='quranAyats'>
-        <p className='hadis'>{arab}</p>
-        <p>{id}</p>
-      </div>
-    );
-  }
+  // function HadithData(props) {
+  //   const { arab, id } = props.data;
+  //   return (
+  //     <div className='quranAyats'>
+  //       <p className='hadis'>{arab}</p>
+  //       <p>{id}</p>
+  //     </div>
+  //   );
+  // }
 
   // function PaginateHadith() {
   //   if (display)
@@ -86,8 +86,8 @@ function Hadith() {
             <form onSubmit={handleSubmit}>
               <select onChange={handleChange} required>
                 <option value=''>Sila pilih kitab...</option>
-                {keetab.map((solkeetab) => (
-                  <option key={solkeetab.id} value={solkeetab.id}>
+                {keetab.map((solkeetab, index) => (
+                  <option key={index} value={solkeetab.id}>
                     {solkeetab.toUpperCase()}
                   </option>
                 ))}
